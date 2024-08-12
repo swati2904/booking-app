@@ -6,6 +6,9 @@ func main() {
 	const conferenceName string = "Go Conference"
 	const conferenceTickets int = 50
 	var remainingTickets uint = 50
+	// var bookings = [50]string{"user1", "user2", "user3"}
+	// alternative syntax
+	var bookings [50]string
 
 	// To check the data type of variables
 	fmt.Printf("conferenceTickets is %T, remainingTickets is %T, conferenceName is %T\n", conferenceTickets, remainingTickets, conferenceName)
@@ -43,6 +46,13 @@ func main() {
 	fmt.Scan(&userTickets)
 
 	remainingTickets = remainingTickets - userTickets
+
+	bookings[0] = firstName + " " + lastName
+
+	fmt.Printf("The whole array: %v\n", bookings)
+	fmt.Printf("The first array: %v\n", bookings[0])
+	fmt.Printf("Array type: %T\n", bookings)
+	fmt.Printf("Array length: %v\n", len(bookings))
 
 	fmt.Printf("Thank you %v %v for booking %v tickets. You will receive a confirmation email at %v or an SMS on your phone Number %v\n", firstName, lastName, userTickets, email, phoneNumber)
 	fmt.Printf("%v tickets remaining for %v", remainingTickets, conferenceName)
