@@ -54,6 +54,14 @@ func main() {
 		fmt.Println("Enter no of tickets:")
 		fmt.Scan(&userTickets)
 
+		//prevent invalid number of tickets book
+		if userTickets > remainingTickets {
+			fmt.Printf("We only have %v tickets remaining, so you can't book %v tickets\n", remainingTickets, userTickets)
+			// break
+			//instead of break and restart the application, inform user to re-enter the ticket value
+			continue
+		}
+
 		remainingTickets = remainingTickets - userTickets
 
 		// bookings[0] = firstName + " " + lastName
@@ -82,6 +90,13 @@ func main() {
 		}
 
 		fmt.Printf("The first names of bookings are: %v\n", firstNames)
+
+		var noTicketsRemaining = remainingTickets == 0
+		if noTicketsRemaining {
+			// end program
+			fmt.Printf("Our conference is booked out. Come back next year.")
+			break
+		}
 	}
 
 }
