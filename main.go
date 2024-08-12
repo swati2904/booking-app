@@ -16,6 +16,8 @@ func main() {
 
 	// Define data type explicitly
 	var firstName string
+	var lastName string
+	var email string
 	var userTickets int
 
 	// Instead of defining the hardcore value ask the user to enter
@@ -27,8 +29,15 @@ func main() {
 	fmt.Println("Enter your first name:")
 	fmt.Scan(&firstName)
 
-	// Ask user for their name
-	userTickets = 2
-	fmt.Printf("user %v booked %v tickets.\n", firstName, userTickets)
+	fmt.Println("Enter your last name:")
+	fmt.Scan(&lastName)
+
+	fmt.Println("Enter your email address:")
+	fmt.Scan(&email)
+
+	fmt.Println("Enter no of tickets:")
+	fmt.Scan(&userTickets)
+
+	fmt.Printf("Thank you %v %v for booking %v tickets. You will receive a confirmation email at %v\n", firstName, lastName, userTickets, email)
 
 }
