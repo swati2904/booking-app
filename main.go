@@ -36,9 +36,6 @@ func main() {
 		// Instead of defining the hardcore value ask the user to enter
 		// & pointer is used to wait for user to enter the value instead of directly printing the value.
 
-		// fmt.Println(remainingTickets)  // will print the value
-		// fmt.Println(&remainingTickets) // will print the memory of the variable stored
-
 		fmt.Println("Enter your first name:")
 		fmt.Scan(&firstName)
 
@@ -55,48 +52,33 @@ func main() {
 		fmt.Scan(&userTickets)
 
 		//prevent invalid number of tickets book
-		if userTickets > remainingTickets {
+		if userTickets <= remainingTickets {
+			remainingTickets = remainingTickets - userTickets
+
+			bookings = append(bookings, firstName+" "+lastName)
+
+			fmt.Printf("Thank you %v %v for booking %v tickets. You will receive a confirmation email at %v or an SMS on your phone Number %v\n", firstName, lastName, userTickets, email, phoneNumber)
+			fmt.Printf("%v tickets remaining for %v\n", remainingTickets, conferenceName)
+
+			firstNames := []string{}
+
+			//looping again to grab only one element at a time
+			//extract firstname from the list
+			for _, booking := range bookings {
+				var names = strings.Fields(booking)
+				firstNames = append(firstNames, names[0])
+			}
+
+			fmt.Printf("The first names of bookings are: %v\n", firstNames)
+
+			if remainingTickets == 0 {
+				// end program
+				fmt.Printf("Our conference is booked out. Come back next year.")
+				break
+			}
+		} else {
 			fmt.Printf("We only have %v tickets remaining, so you can't book %v tickets\n", remainingTickets, userTickets)
-			// break
-			//instead of break and restart the application, inform user to re-enter the ticket value
 			continue
 		}
-
-		remainingTickets = remainingTickets - userTickets
-
-		// bookings[0] = firstName + " " + lastName
-		bookings = append(bookings, firstName+" "+lastName)
-
-		// fmt.Printf("The whole array: %v\n", bookings)
-		// fmt.Printf("The first array: %v\n", bookings[0])
-		// fmt.Printf("Array type: %T\n", bookings)
-		// fmt.Printf("Array length: %v\n", len(bookings))
-
-		// fmt.Printf("The whole slice: %v\n", bookings)
-		// fmt.Printf("The first slice: %v\n", bookings[0])
-		// fmt.Printf("slice type: %T\n", bookings)
-		// fmt.Printf("slice length: %v\n", len(bookings))
-
-		fmt.Printf("Thank you %v %v for booking %v tickets. You will receive a confirmation email at %v or an SMS on your phone Number %v\n", firstName, lastName, userTickets, email, phoneNumber)
-		fmt.Printf("%v tickets remaining for %v\n", remainingTickets, conferenceName)
-
-		firstNames := []string{}
-
-		//looping again to grab only one element at a time
-		//extract firstname from the list
-		for _, booking := range bookings {
-			var names = strings.Fields(booking)
-			firstNames = append(firstNames, names[0])
-		}
-
-		fmt.Printf("The first names of bookings are: %v\n", firstNames)
-
-		var noTicketsRemaining = remainingTickets == 0
-		if noTicketsRemaining {
-			// end program
-			fmt.Printf("Our conference is booked out. Come back next year.")
-			break
-		}
 	}
-
 }
