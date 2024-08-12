@@ -5,7 +5,7 @@ import "fmt" // input/ outside functionality
 func main() {
 	const conferenceName string = "Go Conference"
 	const conferenceTickets int = 50
-	var remainingTickets int = 50
+	var remainingTickets uint = 50
 
 	// To check the data type of variables
 	fmt.Printf("conferenceTickets is %T, remainingTickets is %T, conferenceName is %T\n", conferenceTickets, remainingTickets, conferenceName)
@@ -18,7 +18,8 @@ func main() {
 	var firstName string
 	var lastName string
 	var email string
-	var userTickets int
+	var phoneNumber string
+	var userTickets uint
 
 	// Instead of defining the hardcore value ask the user to enter
 	// & pointer is used to wait for user to enter the value instead of directly printing the value.
@@ -35,9 +36,14 @@ func main() {
 	fmt.Println("Enter your email address:")
 	fmt.Scan(&email)
 
+	fmt.Println("Enter your phone number:")
+	fmt.Scan(&phoneNumber)
+
 	fmt.Println("Enter no of tickets:")
 	fmt.Scan(&userTickets)
 
-	fmt.Printf("Thank you %v %v for booking %v tickets. You will receive a confirmation email at %v\n", firstName, lastName, userTickets, email)
+	remainingTickets = remainingTickets - userTickets
 
+	fmt.Printf("Thank you %v %v for booking %v tickets. You will receive a confirmation email at %v or an SMS on your phone Number %v\n", firstName, lastName, userTickets, email, phoneNumber)
+	fmt.Printf("%v tickets remaining for %v", remainingTickets, conferenceName)
 }
