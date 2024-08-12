@@ -1,6 +1,9 @@
 package main
 
-import "fmt" // input/ outside functionality
+import (
+	"fmt" // input/ outside functionality
+	"strings"
+)
 
 func main() {
 	const conferenceName string = "Go Conference"
@@ -20,51 +23,65 @@ func main() {
 	fmt.Printf("We have total of %v tickets and %v are still avaiable.\n", conferenceTickets, remainingTickets)
 	fmt.Println("Get your tickets here to attend")
 
-	// Define data type explicitly
-	var firstName string
-	var lastName string
-	var email string
-	var phoneNumber string
-	var userTickets uint
+	// for loop
 
-	// Instead of defining the hardcore value ask the user to enter
-	// & pointer is used to wait for user to enter the value instead of directly printing the value.
+	for {
+		// Define data type explicitly
+		var firstName string
+		var lastName string
+		var email string
+		var phoneNumber string
+		var userTickets uint
 
-	// fmt.Println(remainingTickets)  // will print the value
-	// fmt.Println(&remainingTickets) // will print the memory of the variable stored
+		// Instead of defining the hardcore value ask the user to enter
+		// & pointer is used to wait for user to enter the value instead of directly printing the value.
 
-	fmt.Println("Enter your first name:")
-	fmt.Scan(&firstName)
+		// fmt.Println(remainingTickets)  // will print the value
+		// fmt.Println(&remainingTickets) // will print the memory of the variable stored
 
-	fmt.Println("Enter your last name:")
-	fmt.Scan(&lastName)
+		fmt.Println("Enter your first name:")
+		fmt.Scan(&firstName)
 
-	fmt.Println("Enter your email address:")
-	fmt.Scan(&email)
+		fmt.Println("Enter your last name:")
+		fmt.Scan(&lastName)
 
-	fmt.Println("Enter your phone number:")
-	fmt.Scan(&phoneNumber)
+		fmt.Println("Enter your email address:")
+		fmt.Scan(&email)
 
-	fmt.Println("Enter no of tickets:")
-	fmt.Scan(&userTickets)
+		fmt.Println("Enter your phone number:")
+		fmt.Scan(&phoneNumber)
 
-	remainingTickets = remainingTickets - userTickets
+		fmt.Println("Enter no of tickets:")
+		fmt.Scan(&userTickets)
 
-	// bookings[0] = firstName + " " + lastName
-	bookings = append(bookings, firstName+" "+lastName)
+		remainingTickets = remainingTickets - userTickets
 
-	// fmt.Printf("The whole array: %v\n", bookings)
-	// fmt.Printf("The first array: %v\n", bookings[0])
-	// fmt.Printf("Array type: %T\n", bookings)
-	// fmt.Printf("Array length: %v\n", len(bookings))
+		// bookings[0] = firstName + " " + lastName
+		bookings = append(bookings, firstName+" "+lastName)
 
-	// fmt.Printf("The whole slice: %v\n", bookings)
-	// fmt.Printf("The first slice: %v\n", bookings[0])
-	// fmt.Printf("slice type: %T\n", bookings)
-	// fmt.Printf("slice length: %v\n", len(bookings))
+		// fmt.Printf("The whole array: %v\n", bookings)
+		// fmt.Printf("The first array: %v\n", bookings[0])
+		// fmt.Printf("Array type: %T\n", bookings)
+		// fmt.Printf("Array length: %v\n", len(bookings))
 
-	fmt.Printf("Thank you %v %v for booking %v tickets. You will receive a confirmation email at %v or an SMS on your phone Number %v\n", firstName, lastName, userTickets, email, phoneNumber)
-	fmt.Printf("%v tickets remaining for %v\n", remainingTickets, conferenceName)
+		// fmt.Printf("The whole slice: %v\n", bookings)
+		// fmt.Printf("The first slice: %v\n", bookings[0])
+		// fmt.Printf("slice type: %T\n", bookings)
+		// fmt.Printf("slice length: %v\n", len(bookings))
 
-	fmt.Printf("These are all the our booking: %v\n", bookings)
+		fmt.Printf("Thank you %v %v for booking %v tickets. You will receive a confirmation email at %v or an SMS on your phone Number %v\n", firstName, lastName, userTickets, email, phoneNumber)
+		fmt.Printf("%v tickets remaining for %v\n", remainingTickets, conferenceName)
+
+		firstNames := []string{}
+
+		//looping again to grab only one element at a time
+		//extract firstname from the list
+		for _, booking := range bookings {
+			var names = strings.Fields(booking)
+			firstNames = append(firstNames, names[0])
+		}
+
+		fmt.Printf("The first names of bookings are: %v\n", firstNames)
+	}
+
 }
