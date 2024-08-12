@@ -1,6 +1,6 @@
 package main
 
-import "fmt"
+import "fmt" // input/ outside functionality
 
 func main() {
 	const conferenceName string = "Go Conference"
@@ -15,12 +15,20 @@ func main() {
 	fmt.Println("Get your tickets here to attend")
 
 	// Define data type explicitly
-	var userName string
+	var firstName string
 	var userTickets int
 
+	// Instead of defining the hardcore value ask the user to enter
+	// & pointer is used to wait for user to enter the value instead of directly printing the value.
+
+	// fmt.Println(remainingTickets)  // will print the value
+	// fmt.Println(&remainingTickets) // will print the memory of the variable stored
+
+	fmt.Println("Enter your first name:")
+	fmt.Scan(&firstName)
+
 	// Ask user for their name
-	userName = "Jonathan"
 	userTickets = 2
-	fmt.Printf("user %v booked %v tickets.\n", userName, userTickets)
+	fmt.Printf("user %v booked %v tickets.\n", firstName, userTickets)
 
 }
